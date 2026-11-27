@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+const base='/iv8-website';
+const hubs=[
+ {t:'Website Services',d:'Design, UX, website builder, no-code apps and eCommerce — for businesses that want a site they can use and edit.',h:'/services/website-services',items:['Web Design','UX Design','Website Builder','No-Code App Builder','eCommerce Setup']},
+ {t:'Managed Hosting',d:'Managed WordPress, VPS and dedicated servers — set up, secured, backed up and watched. You never touch a server.',h:'/services/managed-hosting',items:['Managed WordPress','Managed VPS','Dedicated Servers']},
+ {t:'Professional Services',d:'Cloud, Kubernetes, OpenShift, containers, AI and compliance readiness — consulting-led work, delivered by specialists.',h:'/services/professional-services',items:['Cloud & Infrastructure','Managed Kubernetes','Managed OpenShift','Managed Containers','Compliance Readiness','AI Consulting','Consultancy','Staffing','Talent Marketplace']},
+];
+---
+<Base title="Services" description="Website services, managed hosting and professional services — design, WordPress, VPS, dedicated, cloud, Kubernetes, OpenShift, AI and compliance readiness.">
+<section><div class="container"><p class="eyebrow">Services</p><h1>Everything you need to launch, run and grow online — in one team.</h1><p style="max-width:720px">Three silos, one team. Pick a silo, then a service — every service has its own page, its own deliverables, and a custom quote.</p>
+<div class="grid3">{hubs.map(h=><div class="card"><h3>{h.t}</h3><p>{h.d}</p><ul>{h.items.map(i=><li>{i}</li>)}</ul><a href={base+h.h}>Explore {h.t} →</a></div>)}</div>
+<div class="note" style="margin-top:28px"><strong>Pricing:</strong> every project is quoted. Tell us your budget and we'll tell you what fits — before you commit to anything.</div>
+</div></section>
+</Base>

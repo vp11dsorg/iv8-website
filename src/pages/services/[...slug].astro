@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SERVICES } from '../../data/services';
+export function getStaticPaths() {
+  return SERVICES.map(s => ({ params: { slug: s.slug }, props: { service: s } }));
+}
+const { service } = Astro.props;
+const base = '/iv8-website';
+const others = SERVICES.filter(s => s.group === service.group && s.slug !== service.slug);
+---
+<Base title={service.title} description={service.intro}>
+<section><div class="container">
+<p class="breadcrumb"><a href={`${base}/services`}>Services</a> / <a href={`${base}${service.parent}`}>{service.group}</a> / {service.title}</p>
+<p class="eyebrow">{service.group}</p>
+<h1>{service.title}</h1>
+<p style="font-size:20px;max-width:720px">{service.tagline}</p>
+<p style="max-width:720px">{service.intro}</p>
+<h2>What's included</h2>
+<ul>{service.deliverables.map(d => <li>{d}</li>)}</ul>
+<h2>How it works</h2>
+<p>1. Discover — one call and a short brief. &nbsp; 2. Design — you see it before it is built. &nbsp; 3. Build — fast, tested, launched. &nbsp; 4. Care — hosting, updates and small changes, every month.</p>
+<div class="note"><strong>Pricing:</strong> every project is quoted. Tell us your budget in the form and we'll tell you what fits — before you commit to anything.</div>
+<h2 style="margin-top:40px">More in {service.group}</h2>
+<div class="grid3">{others.map(o => <div class="card"><h3>{o.title}</h3><p>{o.tagline}</p><a href={`${base}/services/${o.slug}`}>Explore →</a></div>)}</div>
+<p style="margin-top:32px"><a class="btn" href={`${base}/contact?service=${service.slug}`}>Start a Project →</a></p>
+</div></section>
+</Base>

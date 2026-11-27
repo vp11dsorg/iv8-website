@@ -1,0 +1,38 @@
+---
+import '../styles/global.css';
+import { BRAND_NAME, NAV, LOGO } from '../site';
+const { title, description, h1 } = Astro.props;
+const base = '/iv8-website';
+const pageTitle = title ? `${title} | ${BRAND_NAME}` : `${BRAND_NAME} — Web Design, Hosting & Cloud, Canada`;
+const desc = description || 'iv8 is a team of 10–20 designers in Canada who design, build and run websites, stores and apps — fast, mobile-first, and without lock-in.';
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{pageTitle}</title>
+<meta name="description" content={desc} />
+<link rel="icon" href={`${base}/images/logo.webp`} />
+</head>
+<body>
+<div class="announce">Now booking December projects — 2 slots left. <a href={`${base}/contact`}>Start a Project →</a></div>
+<header class="site"><div class="container nav">
+<a href={base + '/'} aria-label="iv8 home"><img class="logo" src={LOGO} alt="iv8 logo" width="120" height="40" /></a>
+<button class="menu-btn" aria-label="Menu" onclick="document.querySelector('.nav nav').classList.toggle('open')">☰</button>
+<nav>{NAV.map(i => <a href={base + i.href}>{i.label}</a>)}</nav>
+<select class="lang" aria-label="Language"><option>🌐 English</option><option>Français</option><option>Español</option><option>Deutsch</option></select>
+<a class="btn" href={`${base}/contact`}>Start a Project</a>
+</div></header>
+<main>
+<slot />
+</main>
+<section style="padding-top:0"><div class="container"><div class="final"><h2>Tell us about your project.</h2><p>One short form. A real reply within 1 business day.</p><a class="btn light" href={`${base}/contact`}>Start a Project →</a></div></div></section>
+<footer><div class="container foot">
+<div><h4>{BRAND_NAME}</h4><p style="color:#aebfd6">Design. Build. Run.<br/>Based in Canada. Working worldwide.</p></div>
+<div><h4>Services</h4><a href={`${base}/services/website-services`}>Website Services</a><a href={`${base}/services/professional-services`}>Professional Services</a><a href={`${base}/services/managed-hosting`}>Managed Hosting</a><a href={`${base}/services`}>All services</a></div>
+<div><h4>Company</h4><a href={`${base}/about`}>About</a><a href={`${base}/work`}>Work</a><a href={`${base}/process`}>Process</a><a href={`${base}/whitepapers`}>Whitepapers</a><a href={`${base}/contact`}>Contact</a></div>
+<div><h4>Legal</h4><a href={`${base}/contact`}>Privacy</a><a href={`${base}/contact`}>Terms</a><p style="margin-top:16px">© 2026 {BRAND_NAME}. Canada.</p></div>
+</div></footer>
+</body>
+</html>
